@@ -1,4 +1,4 @@
-import { prompt } from "inquirer";
+import { prompt, Answers } from "inquirer";
 import { writeFile } from "fs";
 
 async function sleep(time: number) {
@@ -30,7 +30,7 @@ prompt([
     message: "What programming language do you prefer?",
     choices: ["Basic", "Golang", "Javascript", "Cobol", "Java", "Rust", "C++"],
   },
-]).then((answers) => {
+]).then((answers: Answers) => {
   writeFile(
     `result-${new Date().toISOString()}.json`,
     JSON.stringify(answers, null, 2),
