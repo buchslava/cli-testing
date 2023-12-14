@@ -1,0 +1,7 @@
+/dist
+/tmp
+/out-tsc
+/apps/dist
+
+**/node_modules
+result*
