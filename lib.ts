@@ -1,15 +1,24 @@
 import { prompt, Answers } from "inquirer";
 
-export default function cli(
-  validators: ((input: string) => void)[],
-  resultHandler: (answers: Answers) => void
-) {
+async function sleep(time: number) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+export const nameValidator = async (input: string) => {
+  await sleep(1500);
+  if (input === "wrong") {
+    return "Incorrect user!";
+  }
+  return true;
+};
+
+export default function cli(resultHandler: (answers: Answers) => void) {
   prompt([
     {
       name: "name",
       type: "input",
       message: "What's your name?",
-      validate: validators[0],
+      validate: nameValidator,
     },
     {
       name: "iceCream",
